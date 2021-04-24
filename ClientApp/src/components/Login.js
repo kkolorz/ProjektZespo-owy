@@ -3,7 +3,7 @@
 import { Form, Button, Label, Control, Check } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export class Register extends Component {
+export class Login extends Component {
     displayName = Register.name
 
     constructor(props) {
@@ -29,26 +29,26 @@ export class Register extends Component {
         //console.log("TO SEND: " + JSON.parse(registerData));
 
         if (this.state.email != '' && this.state.email != '') {
-            fetch('User/Register', {
+            fetch('User/Login', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ UserName: this.state.UserName, Password: this.state.Password })
             })
-            .then(response => response.json())
-            .then(data => {
-                this.state.responseStatus = data.message;
-                console.log("DATA: " + data.message);
-            })
-            .catch(err => {
-                this.state.responseStatus = "Pojawił się błąd";
-            });
+                .then(response => response.json())
+                .then(data => {
+                    this.state.responseStatus = data.message;
+                    console.log("DATA: " + data.message);
+                })
+                .catch(err => {
+                    this.state.responseStatus = "Pojawił się błąd";
+                });
         }
     }
 
     render() {
         return (
             <div>
-                <h1>Rejestracja</h1>
+                <h1>Logowanie</h1>
                 <p> Status: {this.state.responseStatus} </p>
                 <p>Podaj swoje dane</p>
                 <form onSubmit={this.handleSubmit} >

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'react-bootstrap';
 
 export class Counter extends Component {
   displayName = Counter.name
@@ -19,11 +18,13 @@ export class Counter extends Component {
   render() {
     return (
       <div>
-            <Container fluid>
-                <Row>
-                    <Col>1 of 1</Col>
-                </Row>
-            </Container>
+        <h1>Counter</h1>
+
+        <p>This is a simple example of a React component.</p>
+
+        <p>Current count: <strong>{this.state.currentCount}</strong></p>
+
+        <button onClick={this.incrementCounter}>Increment</button>
       </div>
     );
   }

@@ -20,19 +20,22 @@ export class NavMenu extends Component {
           <Nav>
             <LinkContainer to={'/'} exact>
               <NavItem>
-                <Glyphicon glyph='home' /> Home
+                <Glyphicon glyph='home' /> Strona główna
               </NavItem>
-            </LinkContainer>
+              </LinkContainer>
+
             <LinkContainer to={'/register'}>
               <NavItem>
                 <Glyphicon glyph='education' /> Rejestracja
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/adminpanel'}>
-                <NavItem style={{ backgroundColor: "red" }}>
-                    Panel admnistracyjny
+
+            <LinkContainer to={'/login'}>
+                <NavItem>
+                    <Glyphicon glyph='education' /> Logowanie
                 </NavItem>
             </LinkContainer>
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>
