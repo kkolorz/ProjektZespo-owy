@@ -7,38 +7,49 @@ import './NavMenu.css';
 export class NavMenu extends Component {
   displayName = NavMenu.name
 
-  render() {
-    return (
-      <Navbar inverse fixedTop fluid collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to={'/'}>AplikacjaSpamerska</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <LinkContainer to={'/'} exact>
-              <NavItem>
-                <Glyphicon glyph='home' /> Strona główna
+    render() {
+
+        const isLogged = sessionStorage.getItem('logged') == 'true' ? true : false;
+
+
+        return (
+            <Navbar inverse fixedTop fluid collapseOnSelect>
+                <Navbar.Collapse>
+                    <Nav className="ml-auto">
+                        <LinkContainer to={'/'} exact>
+                            <NavItem>
+                                Strona główna
               </NavItem>
-              </LinkContainer>
+                        </LinkContainer>
 
-            <LinkContainer to={'/register'}>
-              <NavItem>
-                <Glyphicon glyph='education' /> Rejestracja
-              </NavItem>
-            </LinkContainer>
+                        {
+                            isLogged ?
+                                <LinkContainer to={'/adminpanel'}>
+                                    <NavItem>
+                                        Panel Administracyjny
+                    </NavItem>
+                                </LinkContainer>
+                                :
 
-            <LinkContainer to={'/login'}>
-                <NavItem>
-                    <Glyphicon glyph='education' /> Logowanie
-                </NavItem>
-            </LinkContainer>
+                                <div>
+                                    <LinkContainer to={'/register'}>
+                                        <NavItem>
+                                            Rejestracja
+                        </NavItem>
+                                    </LinkContainer>
 
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+                                    <LinkContainer to={'/login'}>
+                                        <NavItem>
+                                            Logowanie
+                        </NavItem>
+                                    </LinkContainer>
+                                </div>
+                        }
+
+
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
     );
   }
 }

@@ -1,10 +1,11 @@
 ﻿import React, { Component } from 'react';
 
 import { Form, Button, Label, Control, Check } from 'react-bootstrap';
+import { useHistory } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class Login extends Component {
-    displayName = Register.name
+    displayName = Login.name
 
     constructor(props) {
         super(props);
@@ -12,6 +13,8 @@ export class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUserNameChange = this.handleUserNameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.setLogged = this.setLogged.bind(this);
+
     }
 
     handleUserNameChange(event) {
@@ -20,6 +23,10 @@ export class Login extends Component {
 
     handlePasswordChange(event) {
         this.setState({ Password: event.target.value });
+    }
+
+    setLogged() {
+        sessionStorage.setItem('logged', 'true');
     }
 
     handleSubmit(event) {
@@ -32,15 +39,22 @@ export class Login extends Component {
             fetch('User/Login', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ UserName: this.state.UserName, Password: this.state.Password })
+                body: JSON.stringify({ UserName: event.target.username.value, Password: event.target.password.value })
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.state.responseStatus = data.message;
-                    console.log("DATA: " + data.message);
+                    console.log("XD1");
+                    console.log(data);
+                    this.setState({ responseStatus: data.message });
+                    if (data.message === "Logowanie pomyślne") {
+                        this.setLogged();
+                        const { history } = this.props;
+                        history.push('/adminpanel');
+                    }
                 })
                 .catch(err => {
-                    this.state.responseStatus = "Pojawił się błąd";
+                    console.log("XDerr");
+                    this.setState({ responseStatus: err.message });
                 });
         }
     }
@@ -49,18 +63,20 @@ export class Login extends Component {
         return (
             <div>
                 <h1>Logowanie</h1>
-                <p> Status: {this.state.responseStatus} </p>
-                <p>Podaj swoje dane</p>
+                <h2> Status: {this.state.responseStatus} </h2>
+
                 <form onSubmit={this.handleSubmit} >
-                    <label>
-                        Nazwa użytkownika:
-                    <input type="text" name="username" value={this.state.UserName} onChange={this.handleUserNameChange} />
-                    </label><br />
-                    <label>
-                        Hasło:
-                    <input type="password" name="password" value={this.state.Password} onChange={this.handlePasswordChange} />
-                    </label>
-                    <input type="submit" value="Wyślij" />
+                    <div class="form-group">
+                        <label>Nazwa użytkownika</label>
+                        <input type="text" name="username" class="form-control" aria-describedby="emailHelp" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hasło</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Potwierdź</button>
                 </form>
 
             </div>

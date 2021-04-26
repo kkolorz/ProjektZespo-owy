@@ -8,7 +8,8 @@ namespace AplikacjaSpamerskaAPI.Models
 {
     public interface IEmailsRepository
     {
-        void AddEmail(Email emailList);
+        void AddEmail(Email email);
         IEnumerable<Email> GetUserEmailList(User user);
+        IEnumerable<Email> GetAllUsersEmailList();
     }
 }

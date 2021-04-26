@@ -12,8 +12,8 @@ namespace AplikacjaSpamerskaAPI.Models
         public string SenderEmail { get; set; }
         public string ReceiverEmail { get; set; }
         public string Content { get; set; }
-        public byte[] ImageData { get; set; }
-        public DateTime DateToSend { get; set; }
-        public int UserId { get; set; }
+        public string ImageData { get; set; }
+        public int HourToSend { get; set; }
+        public int MinuteToSend { get; set; }
     }
 }

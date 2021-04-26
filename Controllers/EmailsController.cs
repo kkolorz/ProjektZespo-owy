@@ -1,8 +1,10 @@
-﻿using AplikacjaSpamerskaAngular.Models;
+﻿using AplikacjaSpamerska.Models;
+using AplikacjaSpamerskaAngular.Models;
 using AplikacjaSpamerskaAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,30 +27,44 @@ namespace AplikacjaSpamerskaAPI.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddEmail([FromBody] EmailsModel emailModel)// TODO CHANGE NAME OF THIS FUCKING CLASS XDDDDD
+        public async Task<IActionResult> Add([FromBody] EmailsModel emailModel)// TODO CHANGE NAME OF THIS FUCKING CLASS XDDDDD
         {
             // pobierz usera
-            var user = _userManager.GetUserAsync(HttpContext.User);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
             // zweryfikuj
             if (!ModelState.IsValid)
-                return ValidationProblem();
+                return Json(new JSONresponseModel { Message = "Problem z walidacją" });
             // dodaj do bazy
+
+            DateTime xd = new DateTime();
+            int index = emailModel.ImageData.IndexOf("base64,") + "base64,".Length;
+            string base64String = emailModel.ImageData.Remove(0, index);
+            byte[] imageData = Convert.FromBase64String(base64String);
+
             Email email = new Email { SenderEmail = emailModel.SenderEmail,
                 ReceiverEmail = emailModel.ReceiverEmail,
                 Content = emailModel.Content,
-                ImageData = emailModel.ImageData,
-                DateToSend = emailModel.DateToSend
+                ImageData = imageData,
+                HourToSend = emailModel.HourToSend,
+                MinuteToSend = emailModel.MinuteToSend,
+                User = user
             };
             _emailListRepository.AddEmail(email);
-            return Ok();
+            return Json(new JSONresponseModel { Message = "Email dodany" });
         }
 
+
+
         [Authorize]
+        [Produces("application/json")]
         [HttpGet]
-        public IEnumerable<Email> GetEmails()// TODO CHANGE NAME OF THIS FUCKING CLASS XDDDDD
+        public IActionResult GetEmailss()// TODO CHANGE NAME OF THIS FUCKING CLASS XDDDDD
         {
             var user = _userManager.GetUserAsync(HttpContext.User);
-            return _emailListRepository.GetUserEmailList(user.Result);
+            var list = _emailListRepository.GetUserEmailList(user.Result).ToList();
+
+            return Json(list);
+
         }
 
     }

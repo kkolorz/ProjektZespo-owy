@@ -32,7 +32,7 @@ namespace AplikacjaSpamerskaAPI.Controllers
         public async Task<IActionResult> Login([FromBody]LoginModel loginModel)
         {
             if (!ModelState.IsValid)
-                return ValidationProblem();
+                return Json(new JSONresponseModel { Message = "Problem z walidacją danych" });
 
             var user = await _userManager.FindByNameAsync(loginModel.UserName);
 
@@ -61,10 +61,10 @@ namespace AplikacjaSpamerskaAPI.Controllers
                 var user = new User() { UserName = loginModel.UserName };
 
                 // check if already exist
-                var tempUser = _userManager.FindByNameAsync(loginModel.UserName);
+                var tempUser = await _userManager.FindByNameAsync(loginModel.UserName);
 
 
-                if(tempUser!= null)
+                if(tempUser != null)
                 {
                     return Json(new JSONresponseModel { Message = "Nick zajęty" });
                 }
@@ -83,6 +83,14 @@ namespace AplikacjaSpamerskaAPI.Controllers
             }
 
             return Json(new JSONresponseModel { Message = "Nie udało się zarejestrować" });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Json(new JSONresponseModel { Message = "Wylogowano" });
+
         }
     }
 }

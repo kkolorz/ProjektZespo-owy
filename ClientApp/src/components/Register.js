@@ -27,20 +27,23 @@ export class Register extends Component {
 
         var registerData = { "UserName": this.state.UserName.value, "Password": this.state.Password.value };
         //console.log("TO SEND: " + JSON.parse(registerData));
+        console.log(this.state.UserName);
+
+        var form = event.target;
+        console.log(form.username.value);
 
         if (this.state.email != '' && this.state.email != '') {
             fetch('User/Register', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ UserName: this.state.UserName, Password: this.state.Password })
+                body: JSON.stringify({ UserName: event.target.username.value, Password: event.target.password.value })
             })
             .then(response => response.json())
             .then(data => {
-                this.state.responseStatus = data.message;
-                console.log("DATA: " + data.message);
+                this.setState({ responseStatus: data.message });
             })
-            .catch(err => {
-                this.state.responseStatus = "Pojawił się błąd";
+                .catch(err => {
+                    this.setState({ responseStatus: err.message });
             });
         }
     }
@@ -49,19 +52,22 @@ export class Register extends Component {
         return (
             <div>
                 <h1>Rejestracja</h1>
+
                 <p> Status: {this.state.responseStatus} </p>
-                <p>Podaj swoje dane</p>
                 <form onSubmit={this.handleSubmit} >
-                    <label>
-                        Nazwa użytkownika:
-                    <input type="text" name="username" value={this.state.UserName} onChange={this.handleUserNameChange} />
-                    </label><br />
-                    <label>
-                        Hasło:
-                    <input type="password" name="password" value={this.state.Password} onChange={this.handlePasswordChange} />
-                    </label>
-                    <input type="submit" value="Wyślij" />
+                    <div class="form-group">
+                        <label>Nazwa użytkownika</label>
+                        <input type="text" name="username" class="form-control" aria-describedby="emailHelp" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hasło</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Potwierdź</button>
                 </form>
+
 
             </div>
         );

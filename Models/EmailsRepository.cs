@@ -15,15 +15,19 @@ namespace AplikacjaSpamerskaAPI.Models
         {
             _appDbContext = appDbContext;
         }
-        public void AddEmail(Email emailList)
+        public void AddEmail(Email email)
         {
-            _appDbContext.Add(emailList);
+            _appDbContext.Add(email);
             _appDbContext.SaveChanges();
+        }
+
+        public IEnumerable<Email> GetAllUsersEmailList()
+        {
+            return _appDbContext.Emails;
         }
 
         public IEnumerable<Email> GetUserEmailList(User user)
         {
-
             return _appDbContext.Emails.Where(email => email.User == user);
         }
     }
