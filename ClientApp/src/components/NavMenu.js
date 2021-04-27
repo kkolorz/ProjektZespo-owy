@@ -5,7 +5,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
-  displayName = NavMenu.name
+    displayName = NavMenu.name
+
 
     render() {
 
@@ -24,11 +25,22 @@ export class NavMenu extends Component {
 
                         {
                             isLogged ?
+
+                                <div>
                                 <LinkContainer to={'/adminpanel'}>
                                     <NavItem>
                                         Panel Administracyjny
-                    </NavItem>
+                                    </NavItem>
                                 </LinkContainer>
+
+
+                                 <LinkContainer to={'/logout'}>
+                                    <NavItem>
+                                        Logout
+                                    </NavItem>
+                                </LinkContainer>
+                                </div>
+
                                 :
 
                                 <div>

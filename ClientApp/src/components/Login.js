@@ -43,7 +43,6 @@ export class Login extends Component {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log("XD1");
                     console.log(data);
                     this.setState({ responseStatus: data.message });
                     if (data.message === "Logowanie pomyślne") {
@@ -53,7 +52,6 @@ export class Login extends Component {
                     }
                 })
                 .catch(err => {
-                    console.log("XDerr");
                     this.setState({ responseStatus: err.message });
                 });
         }

@@ -24,7 +24,7 @@ export class AdminPanel extends Component {
 
     componentDidMount() {
         this.fetchEmailsList();
-        this.timer = setInterval(() => this.fetchEmailsList(), 10000);
+        this.timer = setInterval(() => this.fetchEmailsList(), 1000);
     }
 
     fetchEmailsList() {
@@ -34,7 +34,6 @@ export class AdminPanel extends Component {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("POBRANO: " + JSON.stringify(data));
                 this.setState({ emails: data });
             })
             .catch(err => {
