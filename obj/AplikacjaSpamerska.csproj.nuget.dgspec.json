@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/home/adam-wasielewski/Pobrane/AplikacjaSpamerskaFULLSTACK-final/v3/AplikacjaSpamerska.csproj": {}
+    "/home/v4/AplikacjaSpamerska.csproj": {}
   },
   "projects": {
-    "/home/adam-wasielewski/Pobrane/AplikacjaSpamerskaFULLSTACK-final/v3/AplikacjaSpamerska.csproj": {
+    "/home/v4/AplikacjaSpamerska.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/adam-wasielewski/Pobrane/AplikacjaSpamerskaFULLSTACK-final/v3/AplikacjaSpamerska.csproj",
+        "projectUniqueName": "/home/v4/AplikacjaSpamerska.csproj",
         "projectName": "AplikacjaSpamerska",
-        "projectPath": "/home/adam-wasielewski/Pobrane/AplikacjaSpamerskaFULLSTACK-final/v3/AplikacjaSpamerska.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/home/adam-wasielewski/Pobrane/AplikacjaSpamerskaFULLSTACK-final/v3/obj/",
+        "projectPath": "/home/v4/AplikacjaSpamerska.csproj",
+        "packagesPath": "/home/adam-wasielewski/.nuget/packages/",
+        "outputPath": "/home/v4/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "/home/adam-wasielewski/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"

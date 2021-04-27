@@ -7,13 +7,13 @@ export class Home extends Component {
     return (
       <div>
         <h1>Aplikacja Spamerska</h1>
-        <p>Welcome to your new single-page application, built with:</p>
+        <p>Witaj w aplikacji spamerskiej</p>
 
-        <p>Aby zaczac:</p>
+        <p>Aby zacząć:</p>
         <ul>
-          <li><strong>Stworz konto - > Rejestracja</strong></li>
-          <li><strong>Zaloguj sie -> Logowanie</strong></li>
-          <li><strong>Wejdz w panel administracyjny aby dodac maile</strong></li>
+          <li><strong>Stwórz konto -> Rejestracja</strong></li>
+          <li><strong>Zaloguj się -> Logowanie</strong></li>
+          <li><strong>Po zalogowaniu możesz już zarządzać mailingiem - Panel Administracyjny</strong></li>
         </ul>
         
       </div>
