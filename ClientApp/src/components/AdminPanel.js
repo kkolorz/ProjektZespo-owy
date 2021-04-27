@@ -133,12 +133,12 @@ export class AdminPanel extends Component {
                         <p> Status: {this.state.responseStatus} </p>
                         <form onSubmit={this.addEmail} >
                             <div class="form-group">
-                                <label>EMail źródłowy</label>
+                                <label>Email źródłowy</label>
                                 <input type="email" name="sourceEmailInput" class="form-control" aria-describedby="emailHelp" />
                             </div>
 
                             <div class="form-group">
-                                <label>EMail docelowy</label>
+                                <label>Email docelowy</label>
                                 <input type="email" name="destinationEmailInput" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
 

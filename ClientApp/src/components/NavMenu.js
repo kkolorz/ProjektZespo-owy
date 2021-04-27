@@ -36,7 +36,7 @@ export class NavMenu extends Component {
 
                                  <LinkContainer to={'/logout'}>
                                     <NavItem>
-                                        Logout
+                                        Wyloguj
                                     </NavItem>
                                 </LinkContainer>
                                 </div>
@@ -44,11 +44,11 @@ export class NavMenu extends Component {
                                 :
 
                                 <div>
-                                    <LinkContainer to={'/register'}>
-                                        <NavItem>
-                                            Rejestracja
-                        </NavItem>
-                                    </LinkContainer>
+                                <LinkContainer to={'/register'}>
+                                    <NavItem>
+                                        Rejestracja
+                                    </NavItem>
+                                </LinkContainer>
 
                                     <LinkContainer to={'/login'}>
                                         <NavItem>
